@@ -1,6 +1,7 @@
 #include "game.h"
 #include "game_states.h"
 
+GameInput Game::inputs = {false, false, false, false, false, false};
 bool Game::running = true;
 Window* Game::window;
 Renderer* Game::renderer;
@@ -13,7 +14,7 @@ void Game::init(const char* title, int x, int y, int width, int height, bool ful
   {
     window = new Window(title, x, y, width, height, fullScreen);
     renderer = new Renderer(window->getWindow());
-    texture = new Texture("", renderer);
+    texture = new Texture("res/spritesheet.png", renderer);
     manager = new ManagerManager(renderer);
     running = true;
   }
@@ -43,6 +44,52 @@ void Game::input()
     case SDL_QUIT:
       running = false;
       break;
+    case SDL_KEYDOWN:
+      switch (e.key.keysym.sym)
+      {
+        case SDLK_LEFT:
+          inputs.left = true;
+          break;
+        case SDLK_RIGHT:
+          inputs.right = true;
+          break;
+        case SDLK_UP:
+          inputs.up = true;
+          break;
+        case SDLK_DOWN:
+          inputs.down = true;
+          break;
+        case SDLK_o:
+          inputs.attack = true;
+          break;
+        case SDLK_p:
+          inputs.special = true;
+          break;
+      }
+      break;
+    case SDL_KEYUP:
+      switch (e.key.keysym.sym)
+      {
+        case SDLK_LEFT:
+          inputs.left = false;
+          break;
+        case SDLK_RIGHT:
+          inputs.right = false;
+          break;
+        case SDLK_UP:
+          inputs.up = false;
+          break;
+        case SDLK_DOWN:
+          inputs.down = false;
+          break;
+        case SDLK_o:
+          inputs.attack = false;
+          break;
+        case SDLK_p:
+          inputs.special = false;
+          break;
+      }
+      break;
   }
 }
 
@@ -54,7 +101,7 @@ void Game::update()
 
 void Game::draw()
 {
-  renderer->setDrawColor(0x00, 0x99, 0xdb, 255);
+  renderer->setDrawColor(0, 0, 0, 255);
   renderer->clear();
 
   manager->draw();

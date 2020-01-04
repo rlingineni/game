@@ -14,6 +14,12 @@ add_executable(tsa
   src/sdl/texture.cpp
   src/sdl/window.cpp
 
+  src/ui/background/background_manager.cpp
+  src/ui/background/background.cpp
+  src/ui/components/component_manager.cpp
+  src/ui/components/ui_component.cpp
+  src/ui/components/button/button_manager.cpp
+  src/ui/components/button/button.cpp
   src/ui/slide/slide_manager.cpp
   src/ui/slide/slide.cpp
 )
@@ -24,6 +30,9 @@ target_include_directories(tsa PUBLIC
   src/game/manager
   src/game/object
   src/sdl
+  src/ui/background
+  src/ui/components
+  src/ui/components/button
   src/ui/slide
 )
 

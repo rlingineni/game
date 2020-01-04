@@ -393,6 +393,168 @@ src/sdl/window.cpp.s:
 	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/sdl/window.cpp.s
 .PHONY : src/sdl/window.cpp.s
 
+src/ui/background/background.o: src/ui/background/background.cpp.o
+
+.PHONY : src/ui/background/background.o
+
+# target to build an object file
+src/ui/background/background.cpp.o:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/background/background.cpp.o
+.PHONY : src/ui/background/background.cpp.o
+
+src/ui/background/background.i: src/ui/background/background.cpp.i
+
+.PHONY : src/ui/background/background.i
+
+# target to preprocess a source file
+src/ui/background/background.cpp.i:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/background/background.cpp.i
+.PHONY : src/ui/background/background.cpp.i
+
+src/ui/background/background.s: src/ui/background/background.cpp.s
+
+.PHONY : src/ui/background/background.s
+
+# target to generate assembly for a file
+src/ui/background/background.cpp.s:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/background/background.cpp.s
+.PHONY : src/ui/background/background.cpp.s
+
+src/ui/background/background_manager.o: src/ui/background/background_manager.cpp.o
+
+.PHONY : src/ui/background/background_manager.o
+
+# target to build an object file
+src/ui/background/background_manager.cpp.o:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/background/background_manager.cpp.o
+.PHONY : src/ui/background/background_manager.cpp.o
+
+src/ui/background/background_manager.i: src/ui/background/background_manager.cpp.i
+
+.PHONY : src/ui/background/background_manager.i
+
+# target to preprocess a source file
+src/ui/background/background_manager.cpp.i:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/background/background_manager.cpp.i
+.PHONY : src/ui/background/background_manager.cpp.i
+
+src/ui/background/background_manager.s: src/ui/background/background_manager.cpp.s
+
+.PHONY : src/ui/background/background_manager.s
+
+# target to generate assembly for a file
+src/ui/background/background_manager.cpp.s:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/background/background_manager.cpp.s
+.PHONY : src/ui/background/background_manager.cpp.s
+
+src/ui/components/button/button.o: src/ui/components/button/button.cpp.o
+
+.PHONY : src/ui/components/button/button.o
+
+# target to build an object file
+src/ui/components/button/button.cpp.o:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/button/button.cpp.o
+.PHONY : src/ui/components/button/button.cpp.o
+
+src/ui/components/button/button.i: src/ui/components/button/button.cpp.i
+
+.PHONY : src/ui/components/button/button.i
+
+# target to preprocess a source file
+src/ui/components/button/button.cpp.i:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/button/button.cpp.i
+.PHONY : src/ui/components/button/button.cpp.i
+
+src/ui/components/button/button.s: src/ui/components/button/button.cpp.s
+
+.PHONY : src/ui/components/button/button.s
+
+# target to generate assembly for a file
+src/ui/components/button/button.cpp.s:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/button/button.cpp.s
+.PHONY : src/ui/components/button/button.cpp.s
+
+src/ui/components/button/button_manager.o: src/ui/components/button/button_manager.cpp.o
+
+.PHONY : src/ui/components/button/button_manager.o
+
+# target to build an object file
+src/ui/components/button/button_manager.cpp.o:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/button/button_manager.cpp.o
+.PHONY : src/ui/components/button/button_manager.cpp.o
+
+src/ui/components/button/button_manager.i: src/ui/components/button/button_manager.cpp.i
+
+.PHONY : src/ui/components/button/button_manager.i
+
+# target to preprocess a source file
+src/ui/components/button/button_manager.cpp.i:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/button/button_manager.cpp.i
+.PHONY : src/ui/components/button/button_manager.cpp.i
+
+src/ui/components/button/button_manager.s: src/ui/components/button/button_manager.cpp.s
+
+.PHONY : src/ui/components/button/button_manager.s
+
+# target to generate assembly for a file
+src/ui/components/button/button_manager.cpp.s:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/button/button_manager.cpp.s
+.PHONY : src/ui/components/button/button_manager.cpp.s
+
+src/ui/components/component_manager.o: src/ui/components/component_manager.cpp.o
+
+.PHONY : src/ui/components/component_manager.o
+
+# target to build an object file
+src/ui/components/component_manager.cpp.o:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/component_manager.cpp.o
+.PHONY : src/ui/components/component_manager.cpp.o
+
+src/ui/components/component_manager.i: src/ui/components/component_manager.cpp.i
+
+.PHONY : src/ui/components/component_manager.i
+
+# target to preprocess a source file
+src/ui/components/component_manager.cpp.i:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/component_manager.cpp.i
+.PHONY : src/ui/components/component_manager.cpp.i
+
+src/ui/components/component_manager.s: src/ui/components/component_manager.cpp.s
+
+.PHONY : src/ui/components/component_manager.s
+
+# target to generate assembly for a file
+src/ui/components/component_manager.cpp.s:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/component_manager.cpp.s
+.PHONY : src/ui/components/component_manager.cpp.s
+
+src/ui/components/ui_component.o: src/ui/components/ui_component.cpp.o
+
+.PHONY : src/ui/components/ui_component.o
+
+# target to build an object file
+src/ui/components/ui_component.cpp.o:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/ui_component.cpp.o
+.PHONY : src/ui/components/ui_component.cpp.o
+
+src/ui/components/ui_component.i: src/ui/components/ui_component.cpp.i
+
+.PHONY : src/ui/components/ui_component.i
+
+# target to preprocess a source file
+src/ui/components/ui_component.cpp.i:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/ui_component.cpp.i
+.PHONY : src/ui/components/ui_component.cpp.i
+
+src/ui/components/ui_component.s: src/ui/components/ui_component.cpp.s
+
+.PHONY : src/ui/components/ui_component.s
+
+# target to generate assembly for a file
+src/ui/components/ui_component.cpp.s:
+	$(MAKE) -f CMakeFiles/tsa.dir/build.make CMakeFiles/tsa.dir/src/ui/components/ui_component.cpp.s
+.PHONY : src/ui/components/ui_component.cpp.s
+
 src/ui/slide/slide.o: src/ui/slide/slide.cpp.o
 
 .PHONY : src/ui/slide/slide.o
@@ -486,6 +648,24 @@ help:
 	@echo "... src/sdl/window.o"
 	@echo "... src/sdl/window.i"
 	@echo "... src/sdl/window.s"
+	@echo "... src/ui/background/background.o"
+	@echo "... src/ui/background/background.i"
+	@echo "... src/ui/background/background.s"
+	@echo "... src/ui/background/background_manager.o"
+	@echo "... src/ui/background/background_manager.i"
+	@echo "... src/ui/background/background_manager.s"
+	@echo "... src/ui/components/button/button.o"
+	@echo "... src/ui/components/button/button.i"
+	@echo "... src/ui/components/button/button.s"
+	@echo "... src/ui/components/button/button_manager.o"
+	@echo "... src/ui/components/button/button_manager.i"
+	@echo "... src/ui/components/button/button_manager.s"
+	@echo "... src/ui/components/component_manager.o"
+	@echo "... src/ui/components/component_manager.i"
+	@echo "... src/ui/components/component_manager.s"
+	@echo "... src/ui/components/ui_component.o"
+	@echo "... src/ui/components/ui_component.i"
+	@echo "... src/ui/components/ui_component.s"
 	@echo "... src/ui/slide/slide.o"
 	@echo "... src/ui/slide/slide.i"
 	@echo "... src/ui/slide/slide.s"

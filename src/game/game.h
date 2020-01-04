@@ -5,6 +5,7 @@
 #include "renderer.h"
 #include "texture.h"
 #include "manager_manager.h"
+#include "game_input.h"
 
 class Game
 {
@@ -18,6 +19,7 @@ public:
 
   static bool isRunning();
   static Texture* getTexture();
+  static GameInput inputs;
 private:
   Game();
   ~Game();

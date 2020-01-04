@@ -1,6 +1,7 @@
 #include "slide_manager.h"
 #include "slide.h"
 #include "game_states.h"
+#include "game.h"
 #include "constants.h"
 
 static int slideTicks = 0;
@@ -20,44 +21,49 @@ SlideManager::~SlideManager()
 
 void SlideManager::update()
 {
+  if (GameStates::getFirstTick())
+  {
+    removeObjects();
+    if (GameStates::getState() == GameState::INTRO)
+    {
+      Slide* s;
+      s = new Slide(renderer, "res/images/intro/sea_1.jpg");
+      objects.push_back(s);
+      s = new Slide(renderer, "res/images/intro/whale_1.jpg");
+      objects.push_back(s);
+    }
+  }
+
   if (GameStates::getState() == GameState::INTRO)
   {
-    if (GameStates::getFirstTick())
+    if (Game::inputs.attack)
     {
-      removeObjects();
-      Slide* s;
-      s = new Slide(renderer, "res/sea_1.jpg");
-      objects.push_back(s);
-      s = new Slide(renderer, "res/whale_1.jpg");
-      objects.push_back(s);
+      GameStates::changeState(GameState::HOME);
+    }
+    if (fadeIn)
+    {
+      if (fadeOpacity > 0)
+        fadeOpacity -= 5;
+      else
+      {
+        slideTicks++;
+        if (slideTicks == TARGET_FPS * 3)
+            fadeIn = false;
+      }
     }
     else
     {
-      if (fadeIn)
-      {
-        if (fadeOpacity > 0)
-          fadeOpacity -= 5;
-        else
-        {
-          slideTicks++;
-          if (slideTicks == TARGET_FPS * 3)
-              fadeIn = false;
-        }
-      }
+      if (fadeOpacity < 255)
+        fadeOpacity += 5;
       else
       {
-        if (fadeOpacity < 255)
-          fadeOpacity += 5;
+        if (currentSlide == objects.size() - 1)
+          GameStates::changeState(GameState::HOME);
         else
         {
-          if (currentSlide == objects.size() - 1)
-            GameStates::changeState(GameState::HOME);
-          else
-          {
-            currentSlide++;
-            fadeIn = true;
-            slideTicks = 0;
-          }
+          currentSlide++;
+          fadeIn = true;
+          slideTicks = 0;
         }
       }
     }
