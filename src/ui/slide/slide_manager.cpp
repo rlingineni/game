@@ -1,0 +1,77 @@
+#include "slide_manager.h"
+#include "slide.h"
+#include "game_states.h"
+#include "constants.h"
+
+static int slideTicks = 0;
+static int currentSlide = 0;
+static bool fadeIn = true;
+static int fadeOpacity = 255;
+
+SlideManager::SlideManager(Renderer* ren) : ItemManager(ren)
+{
+
+}
+
+SlideManager::~SlideManager()
+{
+
+}
+
+void SlideManager::update()
+{
+  if (GameStates::getState() == GameState::INTRO)
+  {
+    if (GameStates::getFirstTick())
+    {
+      removeObjects();
+      Slide* s;
+      s = new Slide(renderer, "res/sea_1.jpg");
+      objects.push_back(s);
+      s = new Slide(renderer, "res/whale_1.jpg");
+      objects.push_back(s);
+    }
+    else
+    {
+      if (fadeIn)
+      {
+        if (fadeOpacity > 0)
+          fadeOpacity -= 5;
+        else
+        {
+          slideTicks++;
+          if (slideTicks == TARGET_FPS * 3)
+              fadeIn = false;
+        }
+      }
+      else
+      {
+        if (fadeOpacity < 255)
+          fadeOpacity += 5;
+        else
+        {
+          if (currentSlide == objects.size() - 1)
+            GameStates::changeState(GameState::HOME);
+          else
+          {
+            currentSlide++;
+            fadeIn = true;
+            slideTicks = 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+void SlideManager::draw()
+{
+  if (GameStates::getState() == GameState::INTRO)
+  {
+    objects[currentSlide]->draw();
+
+    renderer->setDrawColor(0, 0, 0, fadeOpacity);
+    renderer->fillRect(NULL);
+  }
+}
