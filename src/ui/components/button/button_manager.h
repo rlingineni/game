@@ -10,10 +10,6 @@ public:
   ButtonManager(Renderer*);
   ~ButtonManager();
   void update();
-private:
-  unsigned int selectedIndex;
-  void setButtonSelected(int);
-  bool switched;
 };
 
 #endif

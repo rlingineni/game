@@ -5,23 +5,25 @@
 #include "renderer.h"
 #include <SDL2/SDL.h>
 
-enum class ButtonState {ANIMATE, NEUTRAL, SELECTED};
+enum class ButtonState {ANIMATE, NEUTRAL, HOVER};
 
 class Button : public UIComponent
 {
 public:
   // Constructor
-  Button(Renderer*, SDL_Rect startPos, SDL_Rect endPos, void (*clickHandler)(Button*), bool);
+  Button(Renderer*, int x, int y, int w, int h, void (*clickHandler)(Button*));
   void update();
 
   void click();
   bool selected;
+  SDL_Rect getPos() {return myPos;}
 private:
-  ButtonState state;
-  // Events
   void (*onClick)(Button*);
   SDL_Rect myPos;
   unsigned int ticks;
+  ButtonState state;
+
+  bool focused();
 };
 
 #endif

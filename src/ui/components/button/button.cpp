@@ -3,56 +3,57 @@
 #include <cmath>
 #include "game.h"
 
-Button::Button(Renderer* renderer, SDL_Rect startPos, SDL_Rect endPos, void (*clickHandler)(Button*), bool isSelected) : UIComponent(renderer)
+Button::Button(Renderer* renderer, int x, int y, int w, int h, void (*clickHandler)(Button*)) : UIComponent(renderer)
 {
-  state = ButtonState::ANIMATE;
   srcRect = {0, 0, 32, 16};
-  destRect = startPos;
-  myPos = endPos;
+  myPos = {x, y, w, h};
+  destRect = myPos;
   onClick = clickHandler;
-  selected = isSelected;
+  state = ButtonState::NEUTRAL;
 }
 
 void Button::update()
 {
+  ticks++;
+  
   switch (state)
   {
-    case ButtonState::ANIMATE:
-    {
-      // Create a function for these two sections
-      double xInc = (myPos.x - destRect.x) / 8.0;
-      if (xInc > 0)
-        xInc = std::ceil(xInc);
-      else
-        xInc = std::floor(xInc);
-      destRect.x += xInc;
-
-      double yInc = (myPos.y - destRect.y) / 8.0;
-      if (yInc > 0)
-        yInc = std::ceil(yInc);
-      else
-        yInc = std::floor(yInc);
-      destRect.y += yInc;
-
-      if ((destRect.x == myPos.x) && (destRect.y == myPos.y))
-        state = ButtonState::NEUTRAL;
-
-      break;
-    }
     case ButtonState::NEUTRAL:
-    {
-      if (selected)
       {
-        int range = 4;
-        double compression = 0.25;
-        destRect.y = myPos.y + (std::sin(compression * ticks) * range);
-        if (!((destRect.x == myPos.x) && (destRect.y <= myPos.y + range && destRect.y >= myPos.y - range)))
+        if (focused())
         {
-          state = ButtonState::ANIMATE;
+          state = ButtonState::HOVER;
         }
-        ticks++;
+        break;
+    }
+    case ButtonState::HOVER:
+    {
+      int range = 4;
+      double compression = 0.25;
+      destRect.y = myPos.y + (std::sin(compression * ticks) * range);
+
+      if (Game::inputs.attack)
+      {
+        onClick(this);
       }
-      break;
+      if (!focused())
+      {
+        destRect = myPos;
+        state = ButtonState::NEUTRAL;
+      }
     }
   }
+}
+
+bool Button::focused()
+{
+  return (Game::inputs.mouseX >= myPos.x &&
+          Game::inputs.mouseX <= myPos.x + destRect.w &&
+          Game::inputs.mouseY >= myPos.y &&
+          Game::inputs.mouseY <= myPos.y + destRect.h);
+}
+
+void Button::click()
+{
+  onClick(this);
 }

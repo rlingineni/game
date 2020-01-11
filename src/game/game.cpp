@@ -1,7 +1,7 @@
 #include "game.h"
 #include "game_states.h"
 
-GameInput Game::inputs = {false, false, false, false, false, false};
+GameInput Game::inputs = {false, false, false, false, false, false, 0, 0};
 bool Game::running = true;
 Window* Game::window;
 Renderer* Game::renderer;
@@ -37,6 +37,8 @@ void Game::close()
 
 void Game::input()
 {
+
+
   SDL_Event e;
   SDL_PollEvent(&e);
   switch (e.type)
@@ -59,12 +61,6 @@ void Game::input()
         case SDLK_DOWN:
           inputs.down = true;
           break;
-        case SDLK_o:
-          inputs.attack = true;
-          break;
-        case SDLK_p:
-          inputs.special = true;
-          break;
       }
       break;
     case SDL_KEYUP:
@@ -82,21 +78,43 @@ void Game::input()
         case SDLK_DOWN:
           inputs.down = false;
           break;
-        case SDLK_o:
-          inputs.attack = false;
+      }
+      break;
+    case SDL_MOUSEBUTTONDOWN:
+      switch (e.button.button)
+      {
+        case SDL_BUTTON_LEFT:
+          inputs.attack = true;
           break;
-        case SDLK_p:
-          inputs.special = false;
+        case SDL_BUTTON_RIGHT:
+          inputs.special = true;
           break;
       }
       break;
+    /*case SDL_MOUSEBUTTONUP:
+      switch (e.button.button)
+      {
+        case SDL_BUTTON_LEFT:
+          inputs.attack = false;
+          break;
+        case SDL_BUTTON_RIGHT:
+          inputs.special = false;
+          break;
+      }
+      break;*/
   }
+  SDL_GetMouseState(&inputs.mouseX, &inputs.mouseY);
 }
 
 void Game::update()
 {
   manager->update();
   GameStates::updateState();
+  if (GameStates::getState() == GameState::QUIT)
+    running = false;
+
+    inputs.attack = false;
+    inputs.special = false;
 }
 
 void Game::draw()

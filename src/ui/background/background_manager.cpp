@@ -15,18 +15,25 @@ BackgroundManager::~BackgroundManager()
 
 void BackgroundManager::update()
 {
-  if (GameStates::getState() == GameState::HOME)
+  if (GameStates::getFirstTick())
   {
-    if (GameStates::getFirstTick())
+    removeObjects();
+    switch (GameStates::getState())
     {
-      removeObjects();
-
-      Background* b = new Background(renderer, "res/images/home.jpg", {0, 0, 1680, 900}, 0);
-      objects.push_back(b);
-    }
-    else
-    {
-
+      case GameState::HOME:
+      {
+        Background* b = new Background(renderer, "res/images/home.jpg", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0);
+        objects.push_back(b);
+        break;
+      }
+      case GameState::MENU:
+      {
+        Background* b;
+        b = new Background(renderer, "res/images/menu/level_select.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT / 2}, 0);
+        objects.push_back(b);
+        b = new Background(renderer, "res/images/menu/shop.jpg", {0, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT / 2}, 0);
+        objects.push_back(b);
+      }
     }
   }
 }

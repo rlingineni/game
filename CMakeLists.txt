@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
+project(tsa)
+
 add_executable(tsa
   src/main.cpp
 
@@ -9,6 +11,10 @@ add_executable(tsa
   src/game/manager/manager_manager.cpp
   src/game/manager/manager.cpp
   src/game/object/game_item.cpp
+
+  src/menu/menu_manager.cpp
+  src/menu/level_select/level_select_manager.cpp
+  src/menu/level_select/level_tile.cpp
 
   src/sdl/renderer.cpp
   src/sdl/texture.cpp
@@ -29,6 +35,8 @@ target_include_directories(tsa PUBLIC
   src/game
   src/game/manager
   src/game/object
+  src/menu
+  src/menu/level_select
   src/sdl
   src/ui/background
   src/ui/components

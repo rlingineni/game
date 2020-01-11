@@ -22,3 +22,11 @@ void GameItem::draw()
   SDL_Rect renderRect = {destRect.x, destRect.y, destRect.w, destRect.h};
   renderer->copy(texture->getTexture(), &srcRect, &renderRect);
 }
+
+bool GameItem::focused()
+{
+  return (Game::inputs.mouseX >= destRect.x &&
+          Game::inputs.mouseX <= destRect.x + destRect.w &&
+          Game::inputs.mouseY >= destRect.y &&
+          Game::inputs.mouseY <= destRect.y + destRect.h);
+}

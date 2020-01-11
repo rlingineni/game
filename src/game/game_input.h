@@ -3,7 +3,9 @@
 
 struct GameInput
 {
-  bool left, right, up, down, attack, special;
+  bool left, right, up, down;
+  bool attack, special;
+  int mouseX, mouseY;
 };
 
 #endif

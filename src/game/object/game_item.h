@@ -14,6 +14,8 @@ public:
 
   virtual void update() = 0;
   virtual void draw();
+
+  bool focused();
 protected:
   Texture* texture;
   SDL_Rect srcRect, destRect;

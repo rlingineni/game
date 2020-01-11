@@ -36,7 +36,7 @@ void SlideManager::update()
 
   if (GameStates::getState() == GameState::INTRO)
   {
-    if (Game::inputs.attack)
+    if (Game::inputs.special)
     {
       GameStates::changeState(GameState::HOME);
     }
