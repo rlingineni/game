@@ -16,6 +16,7 @@ public:
   virtual void draw();
 
   bool focused();
+  bool focused(SDL_Rect);
 protected:
   Texture* texture;
   SDL_Rect srcRect, destRect;

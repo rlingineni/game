@@ -18,16 +18,21 @@ void LevelSelectManager::update()
 {
   if (GameStates::getFirstTick())
   {
+    removeObjects();
     switch (GameStates::getState())
     {
       case GameState::MENU:
       {
         LevelTile* l;
-        l = new LevelTile(renderer, true);
+        l = new LevelTile(renderer, "res/images/menu/level_tiles/level_1.png", true);
         objects.push_back(l);
-        l = new LevelTile(renderer, false);
+        l = new LevelTile(renderer, "res/images/menu/level_tiles/level_2.png", false);
         objects.push_back(l);
-        l = new LevelTile(renderer, false);
+        l = new LevelTile(renderer, "res/images/menu/level_tiles/level_3.png", false);
+        objects.push_back(l);
+        l = new LevelTile(renderer, "res/images/menu/level_tiles/level_4.png", false);
+        objects.push_back(l);
+        l = new LevelTile(renderer, "res/images/menu/level_tiles/level_5.png", false);
         objects.push_back(l);
       }
     }

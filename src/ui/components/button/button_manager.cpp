@@ -19,6 +19,11 @@ static void menu(Button* button)
   GameStates::changeState(GameState::MENU);
 }
 
+static void startLevel(Button* button)
+{
+  GameStates::changeState(GameState::LEVEL);
+}
+
 ButtonManager::ButtonManager(Renderer* ren) : ItemManager(ren)
 {
 
@@ -35,21 +40,24 @@ void ButtonManager::update()
   if (GameStates::getFirstTick())
   {
     removeObjects();
-    if (GameStates::getState() == GameState::HOME)
+    switch (GameStates::getState())
     {
-      Button* button;
-      button = new Button(renderer, (WINDOW_WIDTH / 2) - (buttonW / 2), (WINDOW_HEIGHT / 2) - (buttonH / 2), buttonW, buttonH, menu);
-      objects.push_back(button);
-      button = new Button(renderer, (WINDOW_WIDTH / 2) - (buttonW / 2), (WINDOW_HEIGHT / 2) - (buttonH / 2) + buttonH * 2, buttonW, buttonH, quit);
-      objects.push_back(button);
-    }
-    else if (GameStates::getState() == GameState::LEVEL)
-    {
-
-    }
-    else if (GameStates::getState() == GameState::OVER)
-    {
-
+      case GameState::HOME:
+      {
+        Button* button;
+        button = new Button(renderer, {0, 0, 64, 32}, {(WINDOW_WIDTH / 2) - (buttonW / 2), (WINDOW_HEIGHT / 2) - (buttonH / 2), buttonW, buttonH}, menu);
+        objects.push_back(button);
+        button = new Button(renderer, {64, 0, 64, 32}, {(WINDOW_WIDTH / 2) - (buttonW / 2), (WINDOW_HEIGHT / 2) - (buttonH / 2) + buttonH * 2, buttonW, buttonH}, quit);
+        objects.push_back(button);
+        break;
+      }
+      case GameState::MENU:
+      {
+        Button* button;
+        button = new Button(renderer, {0, 0, 64, 32}, {WINDOW_WIDTH / 2 - (buttonW / 2), (WINDOW_HEIGHT / 2) - buttonH * 2, buttonW, buttonH}, startLevel);
+        objects.push_back(button);
+      }
+      break;
     }
   }
 

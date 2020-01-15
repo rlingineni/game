@@ -30,3 +30,11 @@ bool GameItem::focused()
           Game::inputs.mouseY >= destRect.y &&
           Game::inputs.mouseY <= destRect.y + destRect.h);
 }
+
+bool GameItem::focused(SDL_Rect rect)
+{
+  return (Game::inputs.mouseX >= rect.x &&
+          Game::inputs.mouseX <= rect.x + rect.w &&
+          Game::inputs.mouseY >= rect.y &&
+          Game::inputs.mouseY <= rect.y + rect.h);
+}

@@ -11,7 +11,7 @@ class Button : public UIComponent
 {
 public:
   // Constructor
-  Button(Renderer*, int x, int y, int w, int h, void (*clickHandler)(Button*));
+  Button(Renderer*, SDL_Rect srcRect, SDL_Rect myPos, void (*clickHandler)(Button*));
   void update();
 
   void click();

@@ -3,10 +3,10 @@
 #include <cmath>
 #include "game.h"
 
-Button::Button(Renderer* renderer, int x, int y, int w, int h, void (*clickHandler)(Button*)) : UIComponent(renderer)
+Button::Button(Renderer* renderer, SDL_Rect srcRect, SDL_Rect myPos, void (*clickHandler)(Button*)) : UIComponent(renderer)
 {
-  srcRect = {0, 0, 32, 16};
-  myPos = {x, y, w, h};
+  this->srcRect = srcRect;
+  this->myPos = myPos;
   destRect = myPos;
   onClick = clickHandler;
   state = ButtonState::NEUTRAL;
@@ -14,20 +14,20 @@ Button::Button(Renderer* renderer, int x, int y, int w, int h, void (*clickHandl
 
 void Button::update()
 {
-  ticks++;
-  
   switch (state)
   {
     case ButtonState::NEUTRAL:
+    {
+      ticks = 0;
+      if (focused())
       {
-        if (focused())
-        {
-          state = ButtonState::HOVER;
-        }
-        break;
+        state = ButtonState::HOVER;
+      }
+      break;
     }
     case ButtonState::HOVER:
     {
+      ticks++;
       int range = 4;
       double compression = 0.25;
       destRect.y = myPos.y + (std::sin(compression * ticks) * range);
