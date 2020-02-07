@@ -12,6 +12,11 @@ add_executable(tsa
   src/game/manager/manager.cpp
   src/game/object/game_item.cpp
 
+  src/level/player/player_manager.cpp
+  src/level/player/player.cpp
+  src/level/trampoline/trampoline_manager.cpp
+  src/level/trampoline/trampoline.cpp
+
   src/menu/menu_manager.cpp
   src/menu/level_select/level_select_manager.cpp
   src/menu/level_select/level_tile.cpp
@@ -35,6 +40,8 @@ target_include_directories(tsa PUBLIC
   src/game
   src/game/manager
   src/game/object
+  src/level/player
+  src/level/trampoline
   src/menu
   src/menu/level_select
   src/sdl

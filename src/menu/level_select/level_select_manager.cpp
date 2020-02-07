@@ -6,7 +6,7 @@
 
 LevelSelectManager::LevelSelectManager(Renderer* ren) : ItemManager(ren)
 {
-  selectedIndex = 0;
+
 }
 
 LevelSelectManager::~LevelSelectManager()
@@ -48,12 +48,13 @@ void LevelSelectManager::update()
         {
           if (Game::inputs.attack)
           {
-            selectedIndex = i;
+            Game::selectedLevel = i;
             switchSelected((LevelTile*) objects[i]);
           }
         }
 
-        dynamic_cast<LevelTile*>(objects[i])->setXY((WINDOW_WIDTH / 2 - 128) + (i * 492) - (selectedIndex * 492), 64);
+        int arb = 512;
+        dynamic_cast<LevelTile*>(objects[i])->setXY((WINDOW_WIDTH / 2 - 192) + (i * arb) - (Game::selectedLevel * arb), WINDOW_HEIGHT / 2 - 192);
       }
     }
   }

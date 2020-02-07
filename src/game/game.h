@@ -7,6 +7,12 @@
 #include "manager_manager.h"
 #include "game_input.h"
 
+struct Camera
+{
+  int x;
+  int y;
+};
+
 class Game
 {
 public:
@@ -20,6 +26,8 @@ public:
   static bool isRunning();
   static Texture* getTexture();
   static GameInput inputs;
+  static int selectedLevel;
+  static Camera camera;
 private:
   Game();
   ~Game();

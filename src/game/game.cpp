@@ -7,6 +7,8 @@ Window* Game::window;
 Renderer* Game::renderer;
 Texture* Game::texture;
 ManagerManager* Game::manager;
+int Game::selectedLevel = 0;
+Camera Game::camera = {0, 0};
 
 void Game::init(const char* title, int x, int y, int width, int height, bool fullScreen)
 {

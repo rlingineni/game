@@ -12,6 +12,7 @@ public:
 
   void update();
   void draw();
+  void setXY(int x, int y);
 private:
   int speed;
 };

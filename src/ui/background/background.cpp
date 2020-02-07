@@ -21,3 +21,9 @@ void Background::draw()
 {
   renderer->copy(texture->getTexture(), NULL, &destRect);
 }
+
+void Background::setXY(int x, int y)
+{
+  destRect.x = x;
+  destRect.y = y;
+}

@@ -3,6 +3,8 @@
 #include "slide_manager.h"
 #include "menu_manager.h"
 #include "component_manager.h"
+#include "trampoline_manager.h"
+#include "player_manager.h"
 
 ManagerManager::ManagerManager(Renderer* renderer)
 {
@@ -16,6 +18,10 @@ ManagerManager::ManagerManager(Renderer* renderer)
   objects.push_back(menuM);
   ComponentManager* componentM = new ComponentManager(renderer);
   objects.push_back(componentM);
+  PlayerManager* playerM = new PlayerManager(renderer);
+  objects.push_back(playerM);
+  TrampolineManager* trampolineM = new TrampolineManager(renderer, playerM->getPlayer());
+  objects.push_back(trampolineM);
 }
 
 ManagerManager::~ManagerManager()

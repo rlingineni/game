@@ -12,8 +12,6 @@ public:
   ~LevelSelectManager();
   void update();
   void switchSelected(LevelTile*);
-private:
-  int selectedIndex;
 };
 
 #endif

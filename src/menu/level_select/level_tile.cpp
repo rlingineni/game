@@ -4,8 +4,8 @@ static int hoverDist = 16;
 
 LevelTile::LevelTile(Renderer* ren, const char* filepath, bool selected) : GameItem(ren)
 {
-  destRect.w = 256;
-  destRect.h = 256;
+  destRect.w = 384;
+  destRect.h = 384;
   isSelected = selected;
   texture = new Texture(filepath, ren);
 }
