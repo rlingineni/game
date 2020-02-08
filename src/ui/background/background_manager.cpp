@@ -6,12 +6,14 @@
 
 BackgroundManager::BackgroundManager(Renderer* ren) : ItemManager(ren)
 {
-
+  mix = new Mixer();
+  mix->addTrack("res/music/tsa_boss_1_3.wav");
+  mix->addTrack("res/music/title.wav");
 }
 
 BackgroundManager::~BackgroundManager()
 {
-
+  delete mix;
 }
 
 void BackgroundManager::update()
@@ -19,10 +21,17 @@ void BackgroundManager::update()
   if (GameStates::getFirstTick())
   {
     removeObjects();
+    mix->stop();
     switch (GameStates::getState())
     {
+      case GameState::INTRO:
+      {
+        mix->play(0);
+        break;
+      }
       case GameState::HOME:
       {
+        mix->play(1);
         Background* b = new Background(renderer, "res/images/home.jpg", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0);
         objects.push_back(b);
         break;
@@ -37,7 +46,7 @@ void BackgroundManager::update()
       case GameState::LEVEL:
       {
         Background* b;
-        switch (Game::selectedLevel)
+        switch (Game::levelInfo.level)
         {
           case 4:
             break;

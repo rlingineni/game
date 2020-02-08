@@ -17,6 +17,8 @@ private:
   static int height;
   SDL_Rect myPos;
   Player* player;
+  bool touchingPlayer;
+  int ticks;
 };
 
 #endif

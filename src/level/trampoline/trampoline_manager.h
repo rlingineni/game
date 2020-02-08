@@ -13,6 +13,7 @@ public:
   void update();
 private:
   Player* player;
+  int lastTrampY;
 };
 
 #endif

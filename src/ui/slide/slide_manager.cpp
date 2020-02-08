@@ -3,6 +3,7 @@
 #include "game_states.h"
 #include "game.h"
 #include "constants.h"
+#include "mixer.h"
 
 static int slideTicks = 0;
 static int currentSlide = 0;
@@ -26,11 +27,12 @@ void SlideManager::update()
     removeObjects();
     if (GameStates::getState() == GameState::INTRO)
     {
-      Slide* s;
-      s = new Slide(renderer, "res/images/intro/sea_1.jpg");
-      objects.push_back(s);
-      s = new Slide(renderer, "res/images/intro/whale_1.jpg");
-      objects.push_back(s);
+      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
+      objects.push_back(new Slide(renderer, "res/images/intro/whale_1.jpg"));
+      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
+      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
+      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
+      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
     }
   }
 

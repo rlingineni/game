@@ -21,6 +21,7 @@ add_executable(tsa
   src/menu/level_select/level_select_manager.cpp
   src/menu/level_select/level_tile.cpp
 
+  src/sdl/mixer.cpp
   src/sdl/renderer.cpp
   src/sdl/texture.cpp
   src/sdl/window.cpp
@@ -51,5 +52,5 @@ target_include_directories(tsa PUBLIC
   src/ui/slide
 )
 
-target_link_libraries(tsa SDL2 SDL2_image)
+target_link_libraries(tsa SDL2 SDL2_image SDL2_mixer)
 set_target_properties(tsa PROPERTIES RUNTIME_OUTPUT_DIRECTORY bin)

@@ -9,6 +9,7 @@ class ManagerManager : public Manager
 public:
   ManagerManager(Renderer*);
   ~ManagerManager();
+  void draw();
 };
 
 #endif

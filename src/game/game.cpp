@@ -1,5 +1,6 @@
 #include "game.h"
 #include "game_states.h"
+#include <SDL2/SDL_mixer.h>
 
 GameInput Game::inputs = {false, false, false, false, false, false, 0, 0};
 bool Game::running = true;
@@ -7,13 +8,16 @@ Window* Game::window;
 Renderer* Game::renderer;
 Texture* Game::texture;
 ManagerManager* Game::manager;
-int Game::selectedLevel = 0;
 Camera Game::camera = {0, 0};
+LevelInfo Game::levelInfo = {0, 0};
 
 void Game::init(const char* title, int x, int y, int width, int height, bool fullScreen)
 {
   if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
   {
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 2048);
+
+    
     window = new Window(title, x, y, width, height, fullScreen);
     renderer = new Renderer(window->getWindow());
     texture = new Texture("res/spritesheet.png", renderer);

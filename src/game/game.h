@@ -13,6 +13,12 @@ struct Camera
   int y;
 };
 
+struct LevelInfo
+{
+  int level;
+  int maxHeight;
+};
+
 class Game
 {
 public:
@@ -28,6 +34,7 @@ public:
   static GameInput inputs;
   static int selectedLevel;
   static Camera camera;
+  static LevelInfo levelInfo;
 private:
   Game();
   ~Game();

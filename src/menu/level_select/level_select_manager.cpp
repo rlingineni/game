@@ -48,13 +48,13 @@ void LevelSelectManager::update()
         {
           if (Game::inputs.attack)
           {
-            Game::selectedLevel = i;
+            Game::levelInfo.level = i;
             switchSelected((LevelTile*) objects[i]);
           }
         }
 
         int arb = 512;
-        dynamic_cast<LevelTile*>(objects[i])->setXY((WINDOW_WIDTH / 2 - 192) + (i * arb) - (Game::selectedLevel * arb), WINDOW_HEIGHT / 2 - 192);
+        dynamic_cast<LevelTile*>(objects[i])->setXY((WINDOW_WIDTH / 2 - 192) + (i * arb) - (Game::levelInfo.level * arb), WINDOW_HEIGHT / 2 - 192);
       }
     }
   }

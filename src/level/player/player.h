@@ -15,10 +15,14 @@ public:
   SDL_Rect getPos();
   SDL_Rect getDelta();
   void setPos(int x, int y);
+  int getMaxYVel();
 private:
   SDL_Rect delta;
   float yVel, xVel;
-  bool jumping, canJump;
+  bool jumping, canJump, shouldJump;
+  int defMinMaxYVel, defMaxMaxYVel;
+  int maxYVel, maxXVel;
+  int ticks, trampTicks, airTicks;
 };
 
 #endif
