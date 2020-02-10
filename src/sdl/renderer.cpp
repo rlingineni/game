@@ -43,3 +43,8 @@ SDL_Renderer* Renderer::getRenderer()
 {
   return renderer;
 }
+
+void Renderer::setAlpha(SDL_Texture* texture, Uint8 a)
+{
+  SDL_SetTextureAlphaMod(texture, a);
+}

@@ -41,6 +41,7 @@ target_include_directories(tsa PUBLIC
   src/game
   src/game/manager
   src/game/object
+  src/level/enemies
   src/level/player
   src/level/trampoline
   src/menu

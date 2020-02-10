@@ -17,7 +17,7 @@ void Game::init(const char* title, int x, int y, int width, int height, bool ful
   {
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 2048);
 
-    
+
     window = new Window(title, x, y, width, height, fullScreen);
     renderer = new Renderer(window->getWindow());
     texture = new Texture("res/spritesheet.png", renderer);
@@ -55,16 +55,16 @@ void Game::input()
     case SDL_KEYDOWN:
       switch (e.key.keysym.sym)
       {
-        case SDLK_LEFT:
+        case SDLK_a:
           inputs.left = true;
           break;
-        case SDLK_RIGHT:
+        case SDLK_d:
           inputs.right = true;
           break;
-        case SDLK_UP:
+        case SDLK_w:
           inputs.up = true;
           break;
-        case SDLK_DOWN:
+        case SDLK_s:
           inputs.down = true;
           break;
       }
@@ -72,16 +72,16 @@ void Game::input()
     case SDL_KEYUP:
       switch (e.key.keysym.sym)
       {
-        case SDLK_LEFT:
+        case SDLK_a:
           inputs.left = false;
           break;
-        case SDLK_RIGHT:
+        case SDLK_d:
           inputs.right = false;
           break;
-        case SDLK_UP:
+        case SDLK_w:
           inputs.up = false;
           break;
-        case SDLK_DOWN:
+        case SDLK_s:
           inputs.down = false;
           break;
       }
