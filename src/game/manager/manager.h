@@ -14,7 +14,7 @@ protected:
   Manager();
   ~Manager();
 
-  void removeObjects();
+  virtual void removeObjects();
   std::vector<GameObject*> objects;
 };
 

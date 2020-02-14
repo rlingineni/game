@@ -9,6 +9,9 @@ BackgroundManager::BackgroundManager(Renderer* ren) : ItemManager(ren)
   mix = new Mixer();
   mix->addTrack("res/music/tsa_boss_1_3.wav");
   mix->addTrack("res/music/title.wav");
+  mix->addTrack("res/music/mysterious_shores.wav");
+  mix->addTrack("res/music/run.wav");
+  mix->addTrack("res/music/death.wav");
 }
 
 BackgroundManager::~BackgroundManager()
@@ -38,6 +41,7 @@ void BackgroundManager::update()
       }
       case GameState::MENU:
       {
+        mix->play(2);
         Background* b;
         b = new Background(renderer, "res/images/menu/level_select.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0);
         objects.push_back(b);
@@ -45,6 +49,7 @@ void BackgroundManager::update()
       }
       case GameState::LEVEL:
       {
+        mix->play(3);
         Background* b;
         switch (Game::levelInfo.level)
         {
@@ -62,6 +67,11 @@ void BackgroundManager::update()
             objects.push_back(b);
             break;
         }
+        break;
+      }
+      case GameState::OVER:
+      {
+        mix->play(4);
       }
     }
   }

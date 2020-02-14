@@ -12,6 +12,8 @@ add_executable(tsa
   src/game/manager/manager.cpp
   src/game/object/game_item.cpp
 
+  src/level/enemies/enemy_manager.cpp
+  src/level/enemies/enemy.cpp
   src/level/player/player_manager.cpp
   src/level/player/player.cpp
   src/level/trampoline/trampoline_manager.cpp

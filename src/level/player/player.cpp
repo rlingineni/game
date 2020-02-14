@@ -165,17 +165,19 @@ void Player::update()
         }
       }
     }
+    airTicks++;
+    if (airTicks > 2)
+      canJump = false;
+
+    if (destRect.x < 0)
+      destRect.x = WINDOW_WIDTH - destRect.w;
+
+    if (destRect.x > WINDOW_WIDTH)
+      destRect.x = 0;
+
+    if (destRect.y > WINDOW_HEIGHT)
+      GameStates::changeState(GameState::OVER);
   }
-
-  airTicks++;
-  if (airTicks > 2)
-    canJump = false;
-
-  if (destRect.x < 0)
-    destRect.x = WINDOW_WIDTH - destRect.w;
-
-  if (destRect.x > WINDOW_WIDTH)
-    destRect.x = 0;
 }
 
 void Player::draw()
@@ -231,4 +233,11 @@ void Player::setPos(int x, int y)
 int Player::getMaxYVel()
 {
   return maxYVel;
+}
+
+void Player::reset()
+{
+  destRect = {WINDOW_WIDTH / 2 - 32, WINDOW_HEIGHT - 64 * 6, 64, 64};
+  yVel = 0;
+  xVel = 0;
 }

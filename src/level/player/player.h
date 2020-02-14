@@ -17,6 +17,7 @@ public:
   SDL_Rect getDelta();
   void setPos(int x, int y);
   int getMaxYVel();
+  void reset();
 private:
   SDL_Rect delta;
   std::deque<SDL_Rect> deltas;

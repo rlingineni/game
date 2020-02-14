@@ -18,10 +18,12 @@ void PlayerManager::update()
 {
   if (GameStates::getFirstTick())
   {
+    playerActive = false;
     switch (GameStates::getState())
     {
       case GameState::LEVEL:
       {
+        dynamic_cast<Player*>(objects[0])->reset();
         playerActive = true;
       }
       break;

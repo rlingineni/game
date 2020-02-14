@@ -17,6 +17,8 @@ struct LevelInfo
 {
   int level;
   int maxHeight;
+  int difficulty;
+  int maxDifficulty;
 };
 
 class Game

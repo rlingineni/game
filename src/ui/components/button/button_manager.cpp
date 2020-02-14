@@ -56,8 +56,15 @@ void ButtonManager::update()
         Button* button;
         button = new Button(renderer, {0, 0, 64, 32}, {WINDOW_WIDTH / 2 - (buttonW / 2), (WINDOW_HEIGHT) - buttonH * 3, buttonW, buttonH}, startLevel);
         objects.push_back(button);
+        break;
       }
-      break;
+      case GameState::OVER:
+      {
+        Button* button;
+        button = new Button(renderer, {0, 0, 64, 32}, {WINDOW_WIDTH / 2 - (buttonW / 2), (WINDOW_HEIGHT) - buttonH * 3, buttonW, buttonH}, menu);
+        objects.push_back(button);
+        break;
+      }
     }
   }
 

@@ -8,7 +8,7 @@ int main(int argc, char* args[])
   Uint32 frameStart;
   int frameTime;
 
-  Game::init("TSA", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 480, 320, false);
+  Game::init("TSA", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false);
 
   while (Game::isRunning())
   {

@@ -5,6 +5,7 @@
 #include "component_manager.h"
 #include "trampoline_manager.h"
 #include "player_manager.h"
+#include "enemy_manager.h"
 
 /*
  * It updates in the order here,
@@ -17,6 +18,9 @@ ManagerManager::ManagerManager(Renderer* renderer)
 
   PlayerManager* playerM = new PlayerManager(renderer);
   objects.push_back(playerM);
+
+  EnemyManager* enemyM = new EnemyManager(renderer);
+  objects.push_back(enemyM);
 
   TrampolineManager* trampolineM = new TrampolineManager(renderer, playerM->getPlayer());
   objects.push_back(trampolineM);
