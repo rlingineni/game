@@ -28,6 +28,7 @@ private:
   int ticks, trampTicks, airTicks;
   bool boosting, canBoost;
   int boostTicks, boostDir;
+  int health;
 };
 
 #endif

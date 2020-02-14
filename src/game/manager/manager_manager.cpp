@@ -6,6 +6,8 @@
 #include "trampoline_manager.h"
 #include "player_manager.h"
 #include "enemy_manager.h"
+#include "cutscene_manager.h"
+#include "boss_manager.h"
 
 /*
  * It updates in the order here,
@@ -14,10 +16,16 @@
 
 ManagerManager::ManagerManager(Renderer* renderer)
 {
-  objects.reserve(6);
+  objects.reserve(8);
+
+  CutSceneManager* cutSceneM = new CutSceneManager(renderer);
+  objects.push_back(cutSceneM);
 
   PlayerManager* playerM = new PlayerManager(renderer);
   objects.push_back(playerM);
+
+  BossManager* bossM = new BossManager(renderer, playerM->getPlayer());
+  objects.push_back(bossM);
 
   EnemyManager* enemyM = new EnemyManager(renderer);
   objects.push_back(enemyM);

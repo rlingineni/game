@@ -19,6 +19,8 @@ struct LevelInfo
   int maxHeight;
   int difficulty;
   int maxDifficulty;
+  bool cutScene;
+  bool cutSceneOver;
 };
 
 class Game

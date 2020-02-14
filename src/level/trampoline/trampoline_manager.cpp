@@ -21,7 +21,7 @@ void TrampolineManager::update()
 {
   if (GameStates::getFirstTick())
   {
-    // Remove all objects
+    removeObjects();
     switch (GameStates::getState())
     {
       case GameState::LEVEL:
@@ -39,9 +39,8 @@ void TrampolineManager::update()
   {
 
     if (-Game::levelInfo.maxHeight / 2000 > Game::levelInfo.difficulty)
-    {
       Game::levelInfo.difficulty = -Game::levelInfo.maxHeight / 2000;
-    }
+
     if (Game::levelInfo.difficulty < Game::levelInfo.maxDifficulty)
     {
       if (objects.size() > 10)
@@ -56,7 +55,6 @@ void TrampolineManager::update()
     {
       if (!maxReached)
       {
-        Manager::removeObjects();
         objects.push_back(new Trampoline(renderer, player, 0, Game::camera.y, WINDOW_WIDTH));
         maxReached = true;
       }
@@ -71,4 +69,11 @@ void TrampolineManager::draw()
 {
   for (auto tramp : objects)
     tramp->draw();
+}
+
+void TrampolineManager::removeObjects()
+{
+  for (auto obj : objects)
+    delete obj;
+  std::deque<Trampoline*>().swap(objects);
 }

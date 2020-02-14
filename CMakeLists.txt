@@ -12,6 +12,10 @@ add_executable(tsa
   src/game/manager/manager.cpp
   src/game/object/game_item.cpp
 
+  src/level/boss/boss_manager.cpp
+  src/level/boss/boss.cpp
+  src/level/cutscene/cutscene_manager.cpp
+  src/level/cutscene/dialog.cpp
   src/level/enemies/enemy_manager.cpp
   src/level/enemies/enemy.cpp
   src/level/player/player_manager.cpp
@@ -43,6 +47,8 @@ target_include_directories(tsa PUBLIC
   src/game
   src/game/manager
   src/game/object
+  src/level/boss
+  src/level/cutscene
   src/level/enemies
   src/level/player
   src/level/trampoline

@@ -14,7 +14,7 @@ public:
   ~TrampolineManager();
   void update();
   void draw();
-  // Override the remove objects method
+  void removeObjects();
 private:
   Player* player;
   int lastTrampY;

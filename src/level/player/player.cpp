@@ -31,6 +31,8 @@ Player::Player(Renderer* ren) : GameItem(ren)
   defMaxMaxYVel = 40;
   maxYVel = defMinMaxYVel;
   maxXVel = 10;
+
+  health = 20;
 }
 
 Player::~Player()
@@ -40,7 +42,7 @@ Player::~Player()
 
 void Player::update()
 {
-  if (GameStates::getState() == GameState::LEVEL)
+  if (GameStates::getState() == GameState::LEVEL && !Game::levelInfo.cutScene)
   {
     ticks++;
 
@@ -152,15 +154,20 @@ void Player::update()
 
       if (yVel > 0)
       {
+        // Player is going down
         if (destRect.y + destRect.h / 2 >= Game::camera.y + WINDOW_HEIGHT - WINDOW_HEIGHT / 4)
           Game::camera.y = (destRect.y + destRect.h / 2) - WINDOW_HEIGHT + WINDOW_HEIGHT / 4;
+
+        if (Game::levelInfo.cutSceneOver && Game::camera.y > Game::levelInfo.maxHeight - WINDOW_HEIGHT + 16)
+          Game::camera.y = Game::levelInfo.maxHeight - WINDOW_HEIGHT + 16;
       }
       else
       {
+        // Player is going up
         if (destRect.y + destRect.h / 2 <= Game::camera.y + WINDOW_HEIGHT / 4)
         {
           Game::camera.y = (destRect.y + destRect.h / 2) - WINDOW_HEIGHT / 4;
-          if (Game::camera.y < Game::levelInfo.maxHeight)
+          if (Game::camera.y < Game::levelInfo.maxHeight && Game::levelInfo.difficulty != Game::levelInfo.maxDifficulty)
             Game::levelInfo.maxHeight = Game::camera.y;
         }
       }
@@ -177,6 +184,9 @@ void Player::update()
 
     if (destRect.y > WINDOW_HEIGHT)
       GameStates::changeState(GameState::OVER);
+
+    if (destRect.y < Game::levelInfo.maxHeight && canJump && !Game::levelInfo.cutSceneOver)
+      Game::levelInfo.cutScene = true;
   }
 }
 
@@ -201,6 +211,17 @@ void Player::draw()
     srcRect = {0, 32, 64, 64};
   SDL_Rect dRect = {destRect.x, (destRect.y + maxYVel / 5) - Game::camera.y, destRect.w, destRect.h};
   renderer->copy(Game::getTexture()->getTexture(), &srcRect, &dRect);
+
+  // Draw health
+  SDL_Rect healthBar = {WINDOW_WIDTH - (WINDOW_WIDTH / 8) - 16, 16, (int) ((WINDOW_WIDTH / 8) * (health / 20.0)), 16};
+  if (health > 15)
+    renderer->setDrawColor(0x3e, 0x89, 0x48, 255);
+  else if (health > 5)
+    renderer->setDrawColor(0xfe, 0xea, 0x34, 255);
+  else
+    renderer->setDrawColor(0xe4, 0x3b, 0x44, 255);
+  renderer->fillRect(&healthBar);
+
 }
 
 SDL_Rect Player::getPos()

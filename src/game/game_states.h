@@ -1,7 +1,7 @@
 #ifndef GAME_STATES
 #define GAME_STATES
 
-enum class GameState {INTRO, HOME, MENU, LEVEL, OVER, QUIT};
+enum class GameState {INTRO, HOME, MENU, LEVEL, OVER, QUIT, WIN};
 
 class GameStates
 {
