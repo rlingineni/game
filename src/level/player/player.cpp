@@ -5,34 +5,11 @@
 #include <SDL2/SDL.h>
 #include <deque>
 
+#include <iostream>
+
 Player::Player(Renderer* ren) : GameItem(ren)
 {
-  destRect = {WINDOW_WIDTH / 2 - 32, WINDOW_HEIGHT - 64 * 6, 64, 64};
-  srcRect = {0, 32, 64, 64};
-  delta = destRect;
-  for (int i = 0; i < 10; i++)
-    deltas.push_back(delta);
-
-  canJump = false;
-  jumping = false;
-  shouldJump = false;
-
-  boosting = false;
-  canBoost = true;
-  boostTicks = 0;
-
-  ticks = 0;
-  trampTicks = 0;
-  airTicks = 0;
-
-  yVel = 0;
-  xVel = 0;
-  defMinMaxYVel = 5;
-  defMaxMaxYVel = 40;
-  maxYVel = defMinMaxYVel;
-  maxXVel = 10;
-
-  health = 20;
+  reset();
 }
 
 Player::~Player()
@@ -224,6 +201,7 @@ void Player::draw()
     renderer->setDrawColor(0xe4, 0x3b, 0x44, 255);
   renderer->fillRect(&healthBar);
 
+  std::cout << dRect.y << '\n';
 }
 
 SDL_Rect Player::getPos()
@@ -328,6 +306,30 @@ int Player::getMaxYVel()
 void Player::reset()
 {
   destRect = {WINDOW_WIDTH / 2 - 32, WINDOW_HEIGHT - 64 * 6, 64, 64};
+  srcRect = {0, 32, 64, 64};
+  delta = destRect;
+  deltas.clear();
+  for (int i = 0; i < 10; i++)
+    deltas.push_back(delta);
+
+  canJump = false;
+  jumping = false;
+  shouldJump = false;
+
+  boosting = false;
+  canBoost = true;
+  boostTicks = 0;
+
+  ticks = 0;
+  trampTicks = 0;
+  airTicks = 0;
+
   yVel = 0;
   xVel = 0;
+  defMinMaxYVel = 5;
+  defMaxMaxYVel = 40;
+  maxYVel = defMinMaxYVel;
+  maxXVel = 10;
+
+  health = 20;
 }
