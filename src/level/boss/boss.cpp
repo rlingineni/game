@@ -32,7 +32,11 @@ void Boss::update()
     }
     else
     {
-
+      if (Game::levelInfo.cutScene)
+      {
+        if (destRect.y < Game::camera.y + 16)
+          destRect.y += ((Game::camera.y + 16) - destRect.y) / 8;
+      }
     }
   }
 }

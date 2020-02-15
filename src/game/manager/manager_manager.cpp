@@ -16,7 +16,7 @@
 
 ManagerManager::ManagerManager(Renderer* renderer)
 {
-  objects.reserve(8);
+  objects.reserve(9);
 
   CutSceneManager* cutSceneM = new CutSceneManager(renderer);
   objects.push_back(cutSceneM);
@@ -27,7 +27,7 @@ ManagerManager::ManagerManager(Renderer* renderer)
   BossManager* bossM = new BossManager(renderer, playerM->getPlayer());
   objects.push_back(bossM);
 
-  EnemyManager* enemyM = new EnemyManager(renderer);
+  EnemyManager* enemyM = new EnemyManager(renderer, playerM->getPlayer());
   objects.push_back(enemyM);
 
   TrampolineManager* trampolineM = new TrampolineManager(renderer, playerM->getPlayer());

@@ -4,7 +4,7 @@
 #include "game_item.h"
 #include "renderer.h"
 #include <SDL2/SDL.h>
-#include <deque> // Probably better options but no time
+#include <deque>
 
 class Player : public GameItem
 {
@@ -16,6 +16,7 @@ public:
   SDL_Rect getPos();
   SDL_Rect getDelta();
   void setPos(int x, int y);
+  void hit(int dir, int change);
   int getMaxYVel();
   void reset();
 private:

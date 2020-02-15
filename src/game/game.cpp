@@ -9,7 +9,7 @@ Renderer* Game::renderer;
 Texture* Game::texture;
 ManagerManager* Game::manager;
 Camera Game::camera = {0, 0};
-LevelInfo Game::levelInfo = {0, 0, 1, 7, false, false};
+LevelInfo Game::levelInfo = {0, 0, 1, 2, false, false};
 
 void Game::init(const char* title, int x, int y, int width, int height, bool fullScreen)
 {

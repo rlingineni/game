@@ -138,15 +138,18 @@ void Player::update()
       }
       else
       {
-        if (-yVel < maxYVel)
+        yVel = -maxYVel;
+        maxYVel = defMinMaxYVel;
+        jumping = false;
+        /*if (-yVel < maxYVel)
         {
-          yVel = -maxYVel - yVel / 2;
+          yVel = -maxYVel - yVel / 2; // The gravity will continue the increase and then fall
         }
         else
         {
           maxYVel = defMinMaxYVel;
           jumping = false;
-        }
+        }*/
       }
 
       destRect.y += yVel;
@@ -194,7 +197,6 @@ void Player::draw()
 {
   if (boosting)
   {
-    int i = 0;
     for (auto pos : deltas)
     {
 
@@ -249,6 +251,73 @@ void Player::setPos(int x, int y)
   airTicks = 0;
   canBoost = true;
   boostTicks = 0;
+}
+
+void Player::hit(int dir, int change)
+{
+  switch (dir)
+  {
+    // Player hit top
+    case 0:
+      destRect.y += change - 8;
+      jumping = true;
+      boostTicks = 0;
+      canBoost = true;
+      yVel = 0;
+      maxYVel = 20;
+      break;
+    // Player hit bottom
+    case 1:
+      if (!boosting)
+      {
+        jumping = false;
+        yVel = 0;
+        destRect.y -= change;
+        health--;
+      }
+      break;
+    // Player hit left
+    case 2:
+      destRect.x -= change;
+      xVel = -10;
+      if (boosting)
+      {
+        boostTicks = 0;
+        boosting = false;
+        jumping = true;
+        canBoost = true;
+        yVel = 0;
+        maxYVel = 20;
+      }
+      else
+      {
+        jumping = false;
+        health--;
+      }
+      break;
+    // Player hit right
+    case 3:
+      destRect.x += change;
+      xVel = 10;
+      if (boosting)
+      {
+        boostTicks = 0;
+        boosting = false;
+        jumping = true;
+        canBoost = true;
+        yVel = 0;
+        maxYVel = 20;
+      }
+      else
+      {
+        jumping = false;
+        health--;
+      }
+      break;
+  }
+
+  if (health <= 0)
+    GameStates::changeState(GameState::OVER);
 }
 
 int Player::getMaxYVel()

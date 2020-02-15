@@ -3,13 +3,17 @@
 
 #include "item_manager.h"
 #include "renderer.h"
+#include "player.h"
 
 class EnemyManager : public ItemManager
 {
 public:
-  EnemyManager(Renderer*);
+  EnemyManager(Renderer*, Player*);
   ~EnemyManager();
   void update();
+private:
+  Player* player;
+  int ticks;
 };
 
 #endif
