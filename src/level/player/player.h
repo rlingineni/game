@@ -19,6 +19,7 @@ public:
   void hit(int dir, int change);
   int getMaxYVel();
   void reset();
+  bool isBoosting() {return boosting;}
 private:
   SDL_Rect delta;
   std::deque<SDL_Rect> deltas;

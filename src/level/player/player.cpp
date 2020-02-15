@@ -5,8 +5,6 @@
 #include <SDL2/SDL.h>
 #include <deque>
 
-#include <iostream>
-
 Player::Player(Renderer* ren) : GameItem(ren)
 {
   reset();
@@ -157,10 +155,16 @@ void Player::update()
       canJump = false;
 
     if (destRect.x < 0)
-      destRect.x = WINDOW_WIDTH - destRect.w;
-
-    if (destRect.x > WINDOW_WIDTH)
+    {
       destRect.x = 0;
+      xVel /= -2;
+    }
+
+    if (destRect.x + destRect.w > WINDOW_WIDTH)
+    {
+      destRect.x = WINDOW_WIDTH - destRect.w;
+      xVel /= -2;
+    }
 
     if (destRect.y > WINDOW_HEIGHT)
       GameStates::changeState(GameState::OVER);
@@ -200,8 +204,6 @@ void Player::draw()
   else
     renderer->setDrawColor(0xe4, 0x3b, 0x44, 255);
   renderer->fillRect(&healthBar);
-
-  std::cout << dRect.y << '\n';
 }
 
 SDL_Rect Player::getPos()

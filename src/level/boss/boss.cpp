@@ -24,8 +24,42 @@ void Boss::update()
     if (Game::levelInfo.cutSceneOver)
     {
       ticks++;
-      if (ticks % 4 == 0)
-        health--;
+
+      // Player collides with top
+      if ((player->getDelta().y + player->getDelta().h <= destRect.y && player->getPos().y + player->getPos().h >= destRect.y) &&
+          ((player->getPos().x >= destRect.x && player->getPos().x <= destRect.x + destRect.w) ||
+          (player->getPos().x + player->getPos().w >= destRect.x && player->getPos().x + player->getPos().w <= destRect.x + destRect.w)))
+        player->hit(0, destRect.y - (player->getPos().y + player->getPos().h));
+
+      // Player collides with bottom
+      if ((player->getDelta().y >= destRect.y + destRect.h && player->getPos().y <= destRect.y + destRect.h) &&
+          ((player->getPos().x >= destRect.x && player->getPos().x <= destRect.x + destRect.w) ||
+          (player->getPos().x + player->getPos().w >= destRect.x && player->getPos().x + player->getPos().w <= destRect.x + destRect.w)))
+      {
+        // Risky way to deal more damage
+        player->hit(1, player->getPos().y - (destRect.y + destRect.h));
+        health -= 2;
+      }
+
+      // Player collides with left
+      if ((player->getDelta().x + player->getDelta().w <= destRect.x && player->getPos().x + player->getPos().w >= destRect.x) &&
+          ((player->getPos().y >= destRect.y && player->getPos().y <= destRect.y + destRect.h) ||
+          (player->getPos().y + player->getPos().h >= destRect.y && player->getPos().y + player->getPos().h <= destRect.y + destRect.h)))
+      {
+        if (player->isBoosting())
+          health--;
+        player->hit(2, (player->getPos().x + player->getPos().w) - destRect.x);
+      }
+
+      // Player collides with right
+      if ((player->getDelta().x >= destRect.x + destRect.w && player->getPos().x <= destRect.x + destRect.w) &&
+          ((player->getPos().y >= destRect.y && player->getPos().y <= destRect.y + destRect.h) ||
+          (player->getPos().y + player->getPos().h >= destRect.y && player->getPos().y + player->getPos().h <= destRect.y + destRect.h)))
+      {
+        if (player->isBoosting())
+          health--;
+        player->hit(3, (destRect.x + destRect.w) - player->getPos().x);
+      }
 
       if (health == 0)
         GameStates::changeState(GameState::WIN);

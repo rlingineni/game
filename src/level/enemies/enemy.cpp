@@ -14,7 +14,7 @@ Enemy::Enemy(Renderer* ren, Player* p, int y) : GameItem(ren)
   else
     destRect = {WINDOW_WIDTH - 128, y, 128, 64};
 
-  
+
 }
 
 Enemy::~Enemy()
@@ -65,5 +65,5 @@ bool Enemy::offScreen()
   if (dir)
     return (destRect.x > WINDOW_WIDTH);
   else
-    return (destRect.x < 0);
+    return (destRect.x < 0 - destRect.w);
 }
