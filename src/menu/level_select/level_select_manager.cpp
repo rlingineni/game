@@ -49,7 +49,7 @@ void LevelSelectManager::update()
           if (Game::inputs.attack)
           {
             Game::levelInfo.level = i;
-            switchSelected((LevelTile*) objects[i]);
+            switchSelected(dynamic_cast<LevelTile*>(objects[i]));
           }
         }
 
@@ -66,7 +66,7 @@ void LevelSelectManager::switchSelected(LevelTile* lT)
 {
   for (auto tile : objects)
   {
-    if ((LevelTile*) tile == lT)
+    if (dynamic_cast<LevelTile*>(tile) == lT)
       dynamic_cast<LevelTile*>(tile)->isSelected = true;
     else
       dynamic_cast<LevelTile*>(tile)->isSelected = false;

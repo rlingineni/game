@@ -4,7 +4,7 @@
 #include <vector>
 #include "game_object.h"
 
-class Manager : public GameObject
+class Manager : virtual public GameObject
 {
 public:
   virtual void update();

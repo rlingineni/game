@@ -8,6 +8,7 @@
 #include "enemy_manager.h"
 #include "cutscene_manager.h"
 #include "boss_manager.h"
+#include "label_manager.h"
 
 /*
  * It updates in the order here,
@@ -16,10 +17,13 @@
 
 ManagerManager::ManagerManager(Renderer* renderer)
 {
-  objects.reserve(9);
+  objects.reserve(10);
 
   CutSceneManager* cutSceneM = new CutSceneManager(renderer);
   objects.push_back(cutSceneM);
+
+  LabelManager* labelM = new LabelManager(renderer);
+  objects.push_back(labelM);
 
   PlayerManager* playerM = new PlayerManager(renderer);
   objects.push_back(playerM);

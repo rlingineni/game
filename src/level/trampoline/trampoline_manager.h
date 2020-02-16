@@ -16,6 +16,7 @@ public:
   void draw();
   void removeObjects();
 private:
+  int ticks;
   Player* player;
   int lastTrampY;
   bool maxReached;

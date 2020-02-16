@@ -196,7 +196,7 @@ void Player::draw()
   renderer->copy(Game::getTexture()->getTexture(), &srcRect, &dRect);
 
   // Draw health
-  SDL_Rect healthBar = {WINDOW_WIDTH - (WINDOW_WIDTH / 8) - 16, 16, (int) ((WINDOW_WIDTH / 8) * (health / 20.0)), 16};
+  SDL_Rect healthBar = {16, 16, (int) ((WINDOW_WIDTH / 8) * (health / 20.0)), 16};
   if (health > 15)
     renderer->setDrawColor(0x3e, 0x89, 0x48, 255);
   else if (health > 5)
@@ -233,67 +233,202 @@ void Player::setPos(int x, int y)
   boostTicks = 0;
 }
 
-void Player::hit(int dir, int change)
+void Player::hit(int dir, int change, EnemyTypes enemyT)
 {
-  switch (dir)
+  switch (enemyT)
   {
-    // Player hit top
-    case 0:
-      destRect.y += change - 8;
-      jumping = true;
-      boostTicks = 0;
-      canBoost = true;
-      yVel = 0;
-      maxYVel = 20;
-      break;
-    // Player hit bottom
-    case 1:
-      if (!boosting)
+    case EnemyTypes::enemy:
+    {
+      switch (dir)
       {
-        jumping = false;
-        yVel = 0;
-        destRect.y -= change;
-        health--;
+        // Player hit top
+        case 0:
+          destRect.y += change - 8;
+          jumping = true;
+          boostTicks = 0;
+          canBoost = true;
+          yVel = 0;
+          maxYVel = 20;
+          break;
+        // Player hit bottom
+        case 1:
+          if (!boosting)
+          {
+            jumping = false;
+            yVel = 0;
+            destRect.y -= change;
+            health--;
+          }
+          break;
+        // Player hit left
+        case 2:
+          destRect.x -= change;
+          xVel = -10;
+          if (boosting)
+          {
+            boostTicks = 0;
+            boosting = false;
+            jumping = true;
+            canBoost = true;
+            yVel = 0;
+            maxYVel = 20;
+          }
+          else
+          {
+            jumping = false;
+            health--;
+          }
+          break;
+        // Player hit right
+        case 3:
+          destRect.x += change;
+          xVel = 10;
+          if (boosting)
+          {
+            boostTicks = 0;
+            boosting = false;
+            jumping = true;
+            canBoost = true;
+            yVel = 0;
+            maxYVel = 20;
+          }
+          else
+          {
+            jumping = false;
+            health--;
+          }
+          break;
       }
       break;
-    // Player hit left
-    case 2:
-      destRect.x -= change;
-      xVel = -10;
-      if (boosting)
+    }
+    case EnemyTypes::boss:
+    {
+      switch (dir)
       {
-        boostTicks = 0;
-        boosting = false;
-        jumping = true;
-        canBoost = true;
-        yVel = 0;
-        maxYVel = 20;
-      }
-      else
-      {
-        jumping = false;
-        health--;
+        // Player hit top
+        case 0:
+          destRect.y += change - 8;
+          jumping = true;
+          boostTicks = 0;
+          canBoost = true;
+          yVel = 0;
+          maxYVel = 20;
+          break;
+        // Player hit bottom
+        case 1:
+          if (!boosting)
+          {
+            jumping = false;
+            yVel = 0;
+            destRect.y -= change;
+            health--;
+          }
+          break;
+        // Player hit left
+        case 2:
+          destRect.x -= change;
+          xVel = -20;
+          if (boosting)
+          {
+            boostTicks = 0;
+            boosting = false;
+            jumping = true;
+            canBoost = true;
+            yVel = 0;
+            maxYVel = defMinMaxYVel;
+          }
+          else
+          {
+            jumping = false;
+            health--;
+          }
+          break;
+        // Player hit right
+        case 3:
+          destRect.x += change;
+          xVel = 20;
+          if (boosting)
+          {
+            boostTicks = 0;
+            boosting = false;
+            jumping = true;
+            canBoost = true;
+            yVel = 0;
+            maxYVel = defMinMaxYVel;
+          }
+          else
+          {
+            jumping = false;
+            health--;
+          }
+          break;
       }
       break;
-    // Player hit right
-    case 3:
-      destRect.x += change;
-      xVel = 10;
-      if (boosting)
+    }
+    case EnemyTypes::rocket:
+    {
+      switch (dir)
       {
-        boostTicks = 0;
-        boosting = false;
-        jumping = true;
-        canBoost = true;
-        yVel = 0;
-        maxYVel = 20;
-      }
-      else
-      {
-        jumping = false;
-        health--;
+        // Player hit top
+        case 0:
+          destRect.y += change - 8;
+          jumping = true;
+          boostTicks = 0;
+          canBoost = true;
+          yVel = 0;
+          maxYVel = 20;
+          break;
+        // Player hit bottom
+        case 1:
+          if (!boosting)
+          {
+            jumping = false;
+            yVel = 0;
+            destRect.y -= change;
+            health--;
+          }
+          break;
+        // Player hit left
+        case 2:
+          destRect.x -= change;
+          xVel = -10;
+          if (boosting)
+          {
+            boostTicks = 0;
+            boosting = false;
+            jumping = true;
+            canBoost = true;
+            yVel = 0;
+            maxYVel = 20;
+          }
+          else
+          {
+            jumping = false;
+            health--;
+          }
+          break;
+        // Player hit right
+        case 3:
+          destRect.x += change;
+          xVel = 10;
+          if (boosting)
+          {
+            boostTicks = 0;
+            boosting = false;
+            jumping = true;
+            canBoost = true;
+            yVel = 0;
+            maxYVel = 20;
+          }
+          else
+          {
+            jumping = false;
+            health--;
+          }
+          break;
       }
       break;
+    }
   }
 
   if (health <= 0)

@@ -14,6 +14,7 @@ add_executable(tsa
 
   src/level/boss/boss_manager.cpp
   src/level/boss/boss.cpp
+  src/level/boss/rocket.cpp
   src/level/cutscene/cutscene_manager.cpp
   src/level/cutscene/dialog.cpp
   src/level/enemies/enemy_manager.cpp
@@ -38,6 +39,9 @@ add_executable(tsa
   src/ui/components/ui_component.cpp
   src/ui/components/button/button_manager.cpp
   src/ui/components/button/button.cpp
+  src/ui/labels/label_manager.cpp
+  src/ui/labels/score/number.cpp
+  src/ui/labels/score/score_manager.cpp
   src/ui/slide/slide_manager.cpp
   src/ui/slide/slide.cpp
 )
@@ -58,6 +62,8 @@ target_include_directories(tsa PUBLIC
   src/ui/background
   src/ui/components
   src/ui/components/button
+  src/ui/labels
+  src/ui/labels/score
   src/ui/slide
 )
 

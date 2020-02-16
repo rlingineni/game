@@ -6,7 +6,7 @@
 #include "renderer.h"
 #include "texture.h"
 
-class GameItem : public GameObject
+class GameItem : virtual public GameObject
 {
 public:
   GameItem(Renderer*);

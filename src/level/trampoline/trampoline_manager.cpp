@@ -6,11 +6,14 @@
 #include <cstdlib>
 #include <ctime>
 
+static int maxTramps = 5;
+
 TrampolineManager::TrampolineManager(Renderer* ren, Player* p) : ItemManager(ren)
 {
   player = p;
   std::srand(std::time(nullptr));
   lastTrampY = 0;
+  ticks = 0;
 }
 
 TrampolineManager::~TrampolineManager()
@@ -27,10 +30,13 @@ void TrampolineManager::update()
     {
       case GameState::LEVEL:
       {
+        ticks = 0;
+        // Reset Level Information
         Game::levelInfo.cutScene = false;
         Game::levelInfo.cutSceneOver = false;
         Game::levelInfo.difficulty = 1;
         Game::levelInfo.maxHeight = 0;
+        Game::levelInfo.time = 0;
         maxReached = false;
         lastTrampY = 0;
         objects.push_back(new Trampoline(renderer, player, 0, WINDOW_HEIGHT - 48, WINDOW_WIDTH));
@@ -42,13 +48,19 @@ void TrampolineManager::update()
 
   if (GameStates::getState() == GameState::LEVEL)
   {
+    // Increase Score
+    ticks++;
+    if (ticks % TARGET_FPS == 0 && Game::levelInfo.time < 999)
+      Game::levelInfo.time++;
 
+    // Increase difficulty
     if (-Game::levelInfo.maxHeight / 2000 > Game::levelInfo.difficulty)
       Game::levelInfo.difficulty = -Game::levelInfo.maxHeight / 2000;
 
+    // Add new trampolines
     if (Game::levelInfo.difficulty < Game::levelInfo.maxDifficulty)
     {
-      if (objects.size() > 10)
+      if (objects.size() > maxTramps)
         objects.pop_front();
       if (lastTrampY - Game::levelInfo.maxHeight > 256 * Game::levelInfo.difficulty)
       {

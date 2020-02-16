@@ -41,5 +41,5 @@ void PlayerManager::draw()
 
 Player* PlayerManager::getPlayer()
 {
-  return (Player*) objects[0];
+  return dynamic_cast<Player*>(objects[0]);
 }

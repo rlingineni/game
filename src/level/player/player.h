@@ -6,6 +6,8 @@
 #include <SDL2/SDL.h>
 #include <deque>
 
+enum class EnemyTypes {enemy, boss, rocket};
+
 class Player : public GameItem
 {
 public:
@@ -16,7 +18,7 @@ public:
   SDL_Rect getPos();
   SDL_Rect getDelta();
   void setPos(int x, int y);
-  void hit(int dir, int change);
+  void hit(int dir, int change, EnemyTypes);
   int getMaxYVel();
   void reset();
   bool isBoosting() {return boosting;}

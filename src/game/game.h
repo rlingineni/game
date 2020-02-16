@@ -21,6 +21,7 @@ struct LevelInfo
   int maxDifficulty;
   bool cutScene;
   bool cutSceneOver;
+  int time;
 };
 
 class Game
@@ -39,6 +40,8 @@ public:
   static int selectedLevel;
   static Camera camera;
   static LevelInfo levelInfo;
+  static int scores[5];
+  static int times[5]; // Time it takes to beat level in ticks
 private:
   Game();
   ~Game();
