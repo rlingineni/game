@@ -29,7 +29,7 @@ private:
   bool jumping, canJump, shouldJump;
   int defMinMaxYVel, defMaxMaxYVel;
   int maxYVel, maxXVel;
-  int ticks, trampTicks, airTicks;
+  int ticks, trampTicks, airTicks, sideTicks;
   bool boosting, canBoost;
   int boostTicks, boostDir;
   int health;

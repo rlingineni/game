@@ -86,6 +86,9 @@ void Player::update()
     {
       if (Game::inputs.left || Game::inputs.right)
       {
+        sideTicks++;
+        if (sideTicks > TARGET_FPS / 4)
+          sideTicks = -TARGET_FPS / 4;
         if (Game::inputs.left)
         {
           if (-xVel < maxXVel)
@@ -98,7 +101,10 @@ void Player::update()
         }
       }
       else
+      {
         xVel /= 2;
+        sideTicks = 0;
+      }
 
       if (!jumping)
       {
@@ -189,14 +195,17 @@ void Player::draw()
   }
 
   if (trampTicks % (-maxYVel / 5 + 20) == 0)
-    srcRect = {64, 32, 64, 64};
+    srcRect = {128, 32, 64, 64};
   else
-    srcRect = {0, 32, 64, 64};
+    if (sideTicks > 0)
+      srcRect = {64, 32, 64, 64};
+    else
+      srcRect = {0, 32, 64, 64};
   SDL_Rect dRect = {destRect.x, (destRect.y + maxYVel / 5) - Game::camera.y, destRect.w, destRect.h};
   renderer->copy(Game::getTexture()->getTexture(), &srcRect, &dRect);
 
   // Draw health
-  SDL_Rect healthBar = {16, 16, (int) ((WINDOW_WIDTH / 8) * (health / 20.0)), 16};
+  SDL_Rect healthBar = {16, 32, (int) ((WINDOW_WIDTH / 4) * (health / 20.0)), 16};
   if (health > 15)
     renderer->setDrawColor(0x3e, 0x89, 0x48, 255);
   else if (health > 5)
@@ -460,6 +469,7 @@ void Player::reset()
   ticks = 0;
   trampTicks = 0;
   airTicks = 0;
+  sideTicks = 0;
 
   yVel = 0;
   xVel = 0;

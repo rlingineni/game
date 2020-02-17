@@ -16,11 +16,18 @@ Rocket::Rocket(Renderer* ren, Player* p, int x, int y, int dir) : GameItem(ren)
   switch (direction)
   {
     case 0:
+      srcRect = {224, 32, 32, 64};
+      destRect = {x, y, 32, 64};
+      break;
     case 1:
+      srcRect = {192, 32, 32, 64};
       destRect = {x, y, 32, 64};
       break;
     case 2:
+      srcRect = {192, 0, 64, 32};
+      destRect = {x, y, 64, 32};
     case 3:
+      srcRect = {256, 0, 64, 32};
       destRect = {x, y, 64, 32};
       break;
   }
@@ -33,6 +40,30 @@ Rocket::~Rocket()
 
 void Rocket::update()
 {
+  // Player collides with top
+  if ((player->getDelta().y + player->getDelta().h <= destRect.y && player->getPos().y + player->getPos().h >= destRect.y) &&
+      ((player->getPos().x >= destRect.x && player->getPos().x <= destRect.x + destRect.w) ||
+      (player->getPos().x + player->getPos().w >= destRect.x && player->getPos().x + player->getPos().w <= destRect.x + destRect.w)))
+    player->hit(0, destRect.y - (player->getPos().y + player->getPos().h), EnemyTypes::boss);
+
+  // Player collides with bottom
+  if ((player->getDelta().y >= destRect.y + destRect.h && player->getPos().y <= destRect.y + destRect.h) &&
+      ((player->getPos().x >= destRect.x && player->getPos().x <= destRect.x + destRect.w) ||
+      (player->getPos().x + player->getPos().w >= destRect.x && player->getPos().x + player->getPos().w <= destRect.x + destRect.w)))
+    player->hit(1, player->getPos().y - (destRect.y + destRect.h), EnemyTypes::boss);
+
+  // Player collides with left
+  if ((player->getDelta().x + player->getDelta().w <= destRect.x && player->getPos().x + player->getPos().w >= destRect.x) &&
+      ((player->getPos().y >= destRect.y && player->getPos().y <= destRect.y + destRect.h) ||
+      (player->getPos().y + player->getPos().h >= destRect.y && player->getPos().y + player->getPos().h <= destRect.y + destRect.h)))
+    player->hit(2, (player->getPos().x + player->getPos().w) - destRect.x, EnemyTypes::boss);
+
+  // Player collides with right
+  if ((player->getDelta().x >= destRect.x + destRect.w && player->getPos().x <= destRect.x + destRect.w) &&
+      ((player->getPos().y >= destRect.y && player->getPos().y <= destRect.y + destRect.h) ||
+      (player->getPos().y + player->getPos().h >= destRect.y && player->getPos().y + player->getPos().h <= destRect.y + destRect.h)))
+    player->hit(3, (destRect.x + destRect.w) - player->getPos().x, EnemyTypes::boss);
+
   switch (direction) {
     case 0:
       if (-yVel < maxVel)
@@ -54,8 +85,7 @@ void Rocket::update()
 void Rocket::draw()
 {
   SDL_Rect dRect = {destRect.x, destRect.y - Game::camera.y, destRect.w, destRect.h};
-  renderer->setDrawColor(0, 0, 0, 255);
-  renderer->fillRect(&dRect);
+  renderer->copy(GameItem::texture->getTexture(), &srcRect, &dRect);
 }
 
 bool Rocket::isOffScreen()

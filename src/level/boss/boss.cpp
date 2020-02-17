@@ -11,6 +11,35 @@ Boss::Boss(Renderer* ren, Player* p) : GameItem(ren), ItemManager(ren)
   destRect = {WINDOW_WIDTH / 2 - 256, Game::camera.y - 128 * 3, 512, 256};
   health = 10;
   player = p;
+
+  switch (Game::levelInfo.level)
+  {
+    case 0:
+    {
+      srcRect = {0, 167, 512, 256};
+      break;
+    }
+    case 1:
+    {
+      srcRect = {0, 167, 512, 256};
+      break;
+    }
+    case 2:
+    {
+      srcRect = {0, 167, 512, 256};
+      break;
+    }
+    case 3:
+    {
+      srcRect = {0, 167, 512, 256};
+      break;
+    }
+    case 4:
+    {
+      srcRect = {0, 167, 512, 256};
+      break;
+    }
+  }
 }
 
 Boss::~Boss()
@@ -131,8 +160,7 @@ void Boss::update()
 void Boss::draw()
 {
   SDL_Rect dRect = {destRect.x, destRect.y - Game::camera.y, destRect.w, destRect.h};
-  GameItem::renderer->setDrawColor(0, 0, 0, 255);
-  GameItem::renderer->fillRect(&dRect);
+  GameItem::renderer->copy(GameItem::texture->getTexture(), &srcRect, &dRect);
 
   // Draw health
   SDL_Rect healthBar = {WINDOW_WIDTH - (WINDOW_WIDTH / 2) - 16, 16, (int) ((WINDOW_WIDTH / 2) * (health / 20.0)), 16};

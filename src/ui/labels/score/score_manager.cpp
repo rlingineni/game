@@ -27,7 +27,7 @@ void ScoreManager::update()
   {
     case GameState::LEVEL:
     {
-      addDigits(Game::levelInfo.time, 0, 48, 16);
+      addDigits(Game::levelInfo.time, 0, 64, 16);
       break;
     }
     case GameState::OVER:

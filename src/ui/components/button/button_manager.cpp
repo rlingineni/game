@@ -61,14 +61,14 @@ void ButtonManager::update()
       case GameState::OVER:
       {
         Button* button;
-        button = new Button(renderer, {0, 0, 64, 32}, {WINDOW_WIDTH / 2 - (buttonW / 2), (WINDOW_HEIGHT) - buttonH * 3, buttonW, buttonH}, menu);
+        button = new Button(renderer, {128, 0, 64, 32}, {WINDOW_WIDTH / 2 - (buttonW / 2), (WINDOW_HEIGHT) - buttonH * 3, buttonW, buttonH}, menu);
         objects.push_back(button);
         break;
       }
       case GameState::WIN:
       {
         Button* button;
-        button = new Button(renderer, {0, 0, 64, 32}, {WINDOW_WIDTH / 2 - (buttonW / 2), (WINDOW_HEIGHT) - buttonH * 3, buttonW, buttonH}, menu);
+        button = new Button(renderer, {128, 0, 64, 32}, {WINDOW_WIDTH / 2 - (buttonW / 2), (WINDOW_HEIGHT) - buttonH * 3, buttonW, buttonH}, menu);
         objects.push_back(button);
         break;
       }

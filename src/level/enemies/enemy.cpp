@@ -10,11 +10,15 @@ Enemy::Enemy(Renderer* ren, Player* p, int y) : GameItem(ren)
   dir = std::rand() % 2;
   player = p;
   if (dir)
+  {
     destRect = {0, y, 128, 64};
+    srcRect = {320, 0, 128, 64};
+  }
   else
+  {
     destRect = {WINDOW_WIDTH - 128, y, 128, 64};
-
-
+    srcRect = {320, 64, 128, 64};
+  }
 }
 
 Enemy::~Enemy()
@@ -57,7 +61,7 @@ void Enemy::update()
 void Enemy::draw()
 {
   SDL_Rect dRect = {destRect.x, destRect.y - Game::camera.y, destRect.w, destRect.h};
-  renderer->fillRect(&dRect);
+  renderer->copy(GameItem::texture->getTexture(), &srcRect, &dRect);
 }
 
 bool Enemy::offScreen()

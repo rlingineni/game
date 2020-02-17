@@ -54,17 +54,20 @@ void BackgroundManager::update()
         switch (Game::levelInfo.level)
         {
           case 4:
+            objects.push_back(new Background(renderer, "res/images/levels/grass.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0));
             break;
           case 3:
+            objects.push_back(new Background(renderer, "res/images/levels/space.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0));
             break;
           case 2:
+            objects.push_back(new Background(renderer, "res/images/levels/ice.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0));
             break;
           case 1:
+            objects.push_back(new Background(renderer, "res/images/levels/water.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0));
             break;
           default:
           case 0:
-            b = new Background(renderer, "res/images/levels/grassy.jpg", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0);
-            objects.push_back(b);
+            objects.push_back(new Background(renderer, "res/images/levels/grass.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0));
             break;
         }
         break;

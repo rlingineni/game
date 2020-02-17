@@ -40,6 +40,7 @@ add_executable(tsa
   src/ui/components/button/button_manager.cpp
   src/ui/components/button/button.cpp
   src/ui/labels/label_manager.cpp
+  src/ui/labels/label.cpp
   src/ui/labels/score/number.cpp
   src/ui/labels/score/score_manager.cpp
   src/ui/slide/slide_manager.cpp

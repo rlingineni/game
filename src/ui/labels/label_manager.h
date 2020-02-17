@@ -9,6 +9,7 @@ class LabelManager : public ItemManager
 public:
   LabelManager(Renderer*);
   ~LabelManager();
+  void update();
 };
 
 #endif
