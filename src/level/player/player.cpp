@@ -102,13 +102,22 @@ void Player::update()
       }
       else
       {
-        xVel /= 2;
+        // Slide more if the level is ice
+        if (Game::levelInfo.level == 2)
+          ;
+        else
+          xVel /= 2;
         sideTicks = 0;
       }
 
       if (!jumping)
       {
         yVel += 0.5;
+
+        // Slow fall in water and space
+        if ((Game::levelInfo.level == 1 || Game::levelInfo.level == 3) && yVel > 5)
+          yVel = 5;
+
         if (Game::inputs.up)
         {
           if (yVel < 0)
@@ -119,18 +128,22 @@ void Player::update()
       }
       else
       {
-        yVel = -maxYVel;
-        maxYVel = defMinMaxYVel;
-        jumping = false;
-        /*if (-yVel < maxYVel)
+        if (Game::levelInfo.level == 3)
         {
-          yVel = -maxYVel - yVel / 2; // The gravity will continue the increase and then fall
+          if (-yVel < maxYVel / 2)
+            yVel--;
+          else
+          {
+            maxYVel = defMinMaxYVel;
+            jumping = false;
+          }
         }
         else
         {
+          yVel = -maxYVel;
           maxYVel = defMinMaxYVel;
           jumping = false;
-        }*/
+        }
       }
 
       destRect.y += yVel;

@@ -24,20 +24,7 @@ void BossManager::update()
   {
     if (Game::levelInfo.cutScene && objects.size() < 1)
     {
-      switch (Game::levelInfo.level)
-      {
-        case 0:
-          objects.push_back(new Boss(renderer, player));
-          break;
-        case 1:
-          break;
-        case 2:
-          break;
-        case 3:
-          break;
-        case 4:
-          break;
-      }
+      objects.push_back(new Boss(renderer, player));
     }
   }
 
