@@ -27,12 +27,12 @@ void SlideManager::update()
     removeObjects();
     if (GameStates::getState() == GameState::INTRO)
     {
-      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
-      objects.push_back(new Slide(renderer, "res/images/intro/whale_1.jpg"));
-      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
-      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
+      objects.push_back(new Slide(renderer, ""));
+      /*objects.push_back(new Slide(renderer, "res/images/intro/whale_1.jpg"));
       objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
       objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
+      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));
+      objects.push_back(new Slide(renderer, "res/images/intro/sea_1.jpg"));*/
     }
   }
 

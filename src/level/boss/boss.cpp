@@ -116,18 +116,88 @@ void Boss::update()
         }
         case 1:
         {
+          // Movement
+          if (ticks % TARGET_FPS * 3 == 0)
+            dir = rand() % 2;
+
+          // Rockets
+          if (ticks % TARGET_FPS * 4 == 0)
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
+
+          if (dir)
+            destRect.x += 4;
+          else
+            destRect.x -= 4;
+
+          if (destRect.x < 0 || destRect.x + destRect.w > WINDOW_WIDTH)
+            dir = !dir;
+
           break;
         }
         case 2:
         {
+          // Movement
+          if (ticks % TARGET_FPS * 3 == 0)
+            dir = rand() % 2;
+
+          // Rockets
+          if (ticks % TARGET_FPS * 4 == 0)
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
+
+          if (ticks % TARGET_FPS * 5 == 0)
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x + destRect.w, destRect.y + destRect.h / 2, 3));
+
+          if (dir)
+            destRect.x += 4;
+          else
+            destRect.x -= 4;
+
+          if (destRect.x < 0 || destRect.x + destRect.w > WINDOW_WIDTH)
+            dir = !dir;
+
           break;
         }
         case 3:
         {
+          // Movement
+          if (ticks % TARGET_FPS * 3 == 0)
+            dir = rand() % 2;
+
+          // Rockets
+          if (ticks % TARGET_FPS * 4 == 0)
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
+
+          if (dir)
+            destRect.x += 4;
+          else
+            destRect.x -= 4;
+
+          if (destRect.x < 0 || destRect.x + destRect.w > WINDOW_WIDTH)
+            dir = !dir;
+
           break;
         }
         case 4:
         {
+          // Movement
+          if (ticks % TARGET_FPS * 3 == 0)
+            dir = rand() % 2;
+
+          // Rockets
+          if (ticks % TARGET_FPS * 4 == 0)
+          {
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x + destRect.w, destRect.y, 1));
+          }
+
+          if (dir)
+            destRect.x += 4;
+          else
+            destRect.x -= 4;
+
+          if (destRect.x < 0 || destRect.x + destRect.w > WINDOW_WIDTH)
+            dir = !dir;
+
           break;
         }
       }

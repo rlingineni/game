@@ -35,7 +35,7 @@ void BackgroundManager::update()
       case GameState::HOME:
       {
         mix->play(1);
-        Background* b = new Background(renderer, "res/images/home.jpg", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0);
+        Background* b = new Background(renderer, "res/images/home.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0);
         objects.push_back(b);
         break;
       }
@@ -43,18 +43,21 @@ void BackgroundManager::update()
       {
         mix->play(2);
         Background* b;
-        b = new Background(renderer, "res/images/menu/level_select.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0);
+        b = new Background(renderer, "res/images/home.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0);
         objects.push_back(b);
         break;
       }
       case GameState::LEVEL:
       {
-        mix->play(3);
+        if (Game::levelInfo.level == 4)
+          mix->play(0);
+        else
+          mix->play(3);
         Background* b;
         switch (Game::levelInfo.level)
         {
           case 4:
-            objects.push_back(new Background(renderer, "res/images/levels/grass.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0));
+            objects.push_back(new Background(renderer, "res/images/levels/volcano.jpeg", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0));
             break;
           case 3:
             objects.push_back(new Background(renderer, "res/images/levels/space.png", {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, 0));
