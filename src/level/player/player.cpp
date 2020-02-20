@@ -128,7 +128,7 @@ void Player::update()
       }
       else
       {
-        if (Game::levelInfo.level == 3)
+        /*if (Game::levelInfo.level == 3)
         {
           if (-yVel < maxYVel / 2)
             yVel--;
@@ -138,7 +138,7 @@ void Player::update()
             jumping = false;
           }
         }
-        else
+        else*/
         {
           yVel = -maxYVel;
           maxYVel = defMinMaxYVel;

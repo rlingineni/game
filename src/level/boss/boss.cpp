@@ -102,7 +102,7 @@ void Boss::update()
 
           // Rockets
           if (ticks % TARGET_FPS * 4 == 0)
-            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x + destRect.w / 2, destRect.y, 1));
 
           if (dir)
             destRect.x += 4;
@@ -124,6 +124,10 @@ void Boss::update()
           if (ticks % TARGET_FPS * 4 == 0)
             objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
 
+          // Rockets
+          if (ticks % TARGET_FPS * 8 == 0)
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x + destRect.w, destRect.y, 1));
+
           if (dir)
             destRect.x += 4;
           else
@@ -142,10 +146,13 @@ void Boss::update()
 
           // Rockets
           if (ticks % TARGET_FPS * 4 == 0)
-            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x + destRect.w / 2, destRect.y, 1));
 
           if (ticks % TARGET_FPS * 5 == 0)
-            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x + destRect.w, destRect.y + destRect.h / 2, 3));
+          {
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y + destRect.h / 2, 3));
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y + destRect.h / 2, 2));
+          }
 
           if (dir)
             destRect.x += 4;
@@ -164,8 +171,9 @@ void Boss::update()
             dir = rand() % 2;
 
           // Rockets
-          if (ticks % TARGET_FPS * 4 == 0)
-            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
+          if (ticks % TARGET_FPS * 16 == 0)
+            for (int i = 0; i < destRect.w / 32; i++)
+              objects.push_back(new Rocket(GameItem::renderer, player, destRect.x + i * 32, destRect.y - i * 32, 1));
 
           if (dir)
             destRect.x += 4;
@@ -188,6 +196,12 @@ void Boss::update()
           {
             objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y, 1));
             objects.push_back(new Rocket(GameItem::renderer, player, destRect.x + destRect.w, destRect.y, 1));
+          }
+
+          if (ticks % TARGET_FPS * 5 == 0)
+          {
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y + destRect.h / 2, 3));
+            objects.push_back(new Rocket(GameItem::renderer, player, destRect.x, destRect.y + destRect.h / 2, 2));
           }
 
           if (dir)
