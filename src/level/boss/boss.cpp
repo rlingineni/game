@@ -3,7 +3,7 @@
 #include "game.h"
 #include "constants.h"
 #include "rocket.h"
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 
 Boss::Boss(Renderer* ren, Player* p) : GameItem(ren), ItemManager(ren)
 {

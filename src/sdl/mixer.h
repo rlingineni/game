@@ -1,7 +1,7 @@
 #ifndef MIXER
 #define MIXER
 
-#include <SDL2/SDL_mixer.h>
+#include "SDL_mixer.h" 
 #include <vector>
 
 class Mixer

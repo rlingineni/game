@@ -3,7 +3,7 @@
 #include "player.h"
 #include "game.h"
 #include "constants.h"
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 
 Enemy::Enemy(Renderer* ren, Player* p, int y) : GameItem(ren)
 {

@@ -4,7 +4,7 @@
 #include "game_item.h"
 #include "renderer.h"
 #include "player.h"
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 
 class Trampoline : public GameItem
 {

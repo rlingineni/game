@@ -3,7 +3,7 @@
 
 #include "ui_component.h"
 #include "renderer.h"
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 
 enum class ButtonState {ANIMATE, NEUTRAL, HOVER};
 

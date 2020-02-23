@@ -1,7 +1,7 @@
 #ifndef GAME_ITEM
 #define GAME_ITEM
 
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 #include "game_object.h"
 #include "renderer.h"
 #include "texture.h"

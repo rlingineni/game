@@ -2,7 +2,7 @@
 #include "constants.h"
 #include "game_states.h"
 #include "game.h"
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 #include <deque>
 
 Player::Player(Renderer* ren) : GameItem(ren)

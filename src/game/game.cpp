@@ -1,6 +1,6 @@
 #include "game.h"
 #include "game_states.h"
-#include <SDL2/SDL_mixer.h>
+#include "SDL_mixer.h" 
 
 GameInput Game::inputs = {false, false, false, false, false, false, 0, 0};
 bool Game::running = true;

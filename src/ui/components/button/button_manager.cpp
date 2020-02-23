@@ -4,7 +4,7 @@
 #include "game_states.h"
 #include "constants.h"
 
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 
 static int buttonW = 128;
 static int buttonH = 64;

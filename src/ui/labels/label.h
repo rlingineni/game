@@ -3,7 +3,7 @@
 
 #include "game_item.h"
 #include "renderer.h"
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 
 class Label : public GameItem
 {

@@ -1,6 +1,6 @@
 #include "trampoline.h"
 #include "game.h"
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 
 int Trampoline::height = 32;
 

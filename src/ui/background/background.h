@@ -2,7 +2,7 @@
 #define BACKGROUND
 
 #include "game_item.h"
-#include <SDL2/SDL.h>
+#include "SDL.h" 
 
 class Background : public GameItem
 {
